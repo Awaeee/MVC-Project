@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang=ru>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,3 +16,18 @@
     ?>
 </head>
 <body>
+<nav>
+    <div>
+        <a>Мой блог</a>
+        <button>
+        <span></span>
+        </button>
+        <div>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/">Авторизация</a></li>
+                <li><a href="/">Регистрация</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
