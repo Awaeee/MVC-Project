@@ -10,3 +10,6 @@ Route::post('/register', [UserController::class, 'registerPost']);
 
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'loginPost']);
+
+Route::get('/posts/create', [\Controllers\PostController::class, 'create']);
+Route::post('/posts/create', [\Controllers\PostController::class, 'createPost']);
