@@ -1,40 +1,43 @@
 <?php
     $title = 'Регистрация в системе';
-    $css = [
-        'register/main.css'
-    ];
     @include_once 'header.php';
 ?>
 
 <?= ( isset($_GET['error_password'])
-    ? "<div class='error'>Пароли не совпали!</div>"
+    ? "<div class='alert alert-danger'>Пароли не совпали!</div>"
     : "" )
 ?>
-<?php @include_once 'footer.php'; ?>
-<div>
-    <div>
-        <div>
-            <div>
-                <form action="" method="POST">
-                    <div>
-                        <lable>Ваше ФИО:</lable>
-                        <input type="text" name="name" id="inputName" placeholder="Фамилия Имя Отчество">
-                    </div>
-                    <div>
-                        <lable>Ваш логин:</lable>
-                        <input type="text" name="login" id="inputLogin" placeholder="Логин">
-                    </div>
-                    <div>
-                        <lable>Ваш пароль:</lable>
-                        <input type="password" name="password" id="inputPassword" placeholder="Пароль">
-                    </div>
-                    <div>
-                        <lable>Ваш повтор пароля:</lable>
-                        <input type="password" name="password_confirmed" id="inputPasswordConfirmed" placeholder="Повтор пароля">
-                    </div>
-                    <button>Регестрация</button>
-                </form>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6 border border-1 rounded-2 mt-2 p-2">
+            <form action="" method="POST">
+                <div class="mb-3">
+                    <label for="inputName" class="form-label">Ваше ФИО:</label>
+                    <input type="text" name="name" <?= $isError('name', true) ?> id="inputName" placeholder="Фамилия Имя Отчество">
+                    <?= $isError('name') ?>
+                </div>
+                <div class="mb-3">
+                    <label for="inputLogin" class="form-label">Ваш логин:</label>
+                    <input type="text" name="login" <?= $isError('login', true) ?> id="inputLogin" placeholder="Укажите логин" required>
+                    <?= $isError('login') ?>
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Ваш пароль:</label>
+                    <input type="password" name="password" <?= $isError('password', true) ?> id="inputPassword" placeholder="Укажите пароль:" required>
+                    <?= $isError('password') ?>
+                </div>
+                <div class="mb-3">
+                    <label for="inputPasswordConfirmed" class="form-label">Ваш повтор пароля:</label>
+                    <input type="password" name="password_confirmed" <?= $isError('password_confirmed', true) ?> id="inputPasswordConfirmed" placeholder="Укажите пароль повторно:" required>
+                    <?= $isError('password_confirmed') ?>
+                </div>
+                <button type="submit" class="btn btn-primary">Регистрация</button>
+            </form>
         </div>
+        <div class="col"></div>
     </div>
 </div>
+
+
+<?php @include_once 'footer.php'; ?>

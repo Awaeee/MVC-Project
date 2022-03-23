@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang=ru>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,26 +7,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= (isset($title) ? $title : 'Главная страница') ?></title>
     <?php
+        $css[] = 'bootstrap.css';
+        $javascript[] = ['src' => 'bootstrap.js'];
+
         if(isset($css))
             foreach($css as $item)
                 echo "<link rel='stylesheet' href='/assets/css/{$item}'>";
         if(isset($javascript))
             foreach($javascript as $item)
-                echo "<script src='/assets/js/{$item['src']}' " . ($item['defer'] ? 'defer' : '' ) . "></script>"
+                echo "<script src='/assets/js/{$item['src']}' " . (isset($item['defer']) ? 'defer' : '' ) . "></script>"
     ?>
 </head>
 <body>
-<nav>
-    <div>
-        <a>Мой блог</a>
-        <button>
-        <span></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Мой блог</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div>
-            <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/">Авторизация</a></li>
-                <li><a href="/">Регистрация</a></li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                </li>
+                <?php if(has_session('id')): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account">Мой аккаунт</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Авторизация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Регистрация</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
